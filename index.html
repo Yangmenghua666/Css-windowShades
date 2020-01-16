@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>百叶窗</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <!-- 图片容器 -->
+            <div class="slider">
+                <!-- 图片 -->
+                <div class="img img1 change">
+                    <div class="frag frag1"></div>
+                    <div class="frag frag2"></div>
+                    <div class="frag frag3"></div>
+                    <div class="frag frag4"></div>
+                    <div class="frag frag5"></div>
+                    <div class="frag frag6"></div>
+                </div>
+                <div class="img img2">
+                    <div class="frag frag1"></div>
+                    <div class="frag frag2"></div>
+                    <div class="frag frag3"></div>
+                    <div class="frag frag4"></div>
+                    <div class="frag frag5"></div>
+                    <div class="frag frag6"></div>
+                </div>
+                <div class="img img3">
+                    <div class="frag frag1"></div>
+                    <div class="frag frag2"></div>
+                    <div class="frag frag3"></div>
+                    <div class="frag frag4"></div>
+                    <div class="frag frag5"></div>
+                    <div class="frag frag6"></div>
+                </div>
+                <div class="img img4">
+                    <div class="frag frag1"></div>
+                    <div class="frag frag2"></div>
+                    <div class="frag frag3"></div>
+                    <div class="frag frag4"></div>
+                    <div class="frag frag5"></div>
+                    <div class="frag frag6"></div>
+                </div>
+                <div class="img img5">
+                    <div class="frag frag1"></div>
+                    <div class="frag frag2"></div>
+                    <div class="frag frag3"></div>
+                    <div class="frag frag4"></div>
+                    <div class="frag frag5"></div>
+                    <div class="frag frag6"></div>
+                </div>
+                <div class="img img6">
+                    <div class="frag frag1"></div>
+                    <div class="frag frag2"></div>
+                    <div class="frag frag3"></div>
+                    <div class="frag frag4"></div>
+                    <div class="frag frag5"></div>
+                    <div class="frag frag6"></div>
+                </div>
+            </div>
+            <!-- 底部滑块 -->
+            <div class="controls">
+                <span id="span1" onclick="jump('.img1','#span1')"></span>
+                <span id="span2" onclick="jump('.img2','#span2')"></span>
+                <span id="span3" onclick="jump('.img3','#span3')"></span>
+                <span id="span4" onclick="jump('.img4','#span4')"></span>
+                <span id="span5" onclick="jump('.img5','#span5')"></span>
+                <span id="span6" onclick="jump('.img6','#span6')"></span>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            //跳转
+           function jump(imgClass,spanId){
+                for(var i = 1; i <= 6;++i){
+                    $("#span" + i).css("opacity","0.2");
+                }
+                $(spanId).css("opacity","0.8");
+                if($(imgClass).hasClass("change")){
+                    return;
+                }
+                for(var i = 1; i <= 6;++i){
+                    if($(".img" + i).hasClass("change")){
+                            $(".img" + i).removeClass("change");
+                    }
+                }
+                $(imgClass).addClass("change");
+           }
+           //定时翻页
+           function startPlay(){
+                for(var i = 1; i <= 6;++i){
+                    $("#span" + i).css("opacity","0.2");
+                }
+                for(var i = 1; i <= 6;++i){
+                    if($(".img" + i).hasClass("change")){
+                        $(".img" + i).removeClass("change");
+                        if(i == 6){
+                            $(".img1").addClass("change");
+                            $("#span1").css("opacity","0.8");
+                            break;
+                        }
+                        $(".img" + (i + 1)).addClass("change");
+                        $("#span" + (i + 1)).css("opacity","0.8");
+                        break;
+                    }
+                }
+           }
+           setInterval(startPlay,5000);
+        </script>
+    </body>
+</html>
